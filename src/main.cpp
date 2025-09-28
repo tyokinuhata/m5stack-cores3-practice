@@ -6,10 +6,13 @@ void setup() {
   auto cfg = M5.config();
   M5.begin(cfg);
 
+  uint16_t bg = Display.color565(0x22, 0x22, 0x22);
+  uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
+
   Display.setRotation(1);
-  Display.fillScreen(0x222222);
-  Display.setTextColor(0xFFFFFF, 0x222222);
-  Display.setTextSize(4);
+  Display.fillScreen(bg);
+  Display.setTextColor(fg, bg);
+  Display.setTextSize(3);
   Display.setCursor(20, 20);
   Display.print("hello, world!");
 }
