@@ -12,11 +12,18 @@ crw-rw-rw- 9,10 root wheel 27 Sep 11:04 /dev/tty.usbmodem1101
 
 ## 書き込み
 
-- VSCodeにPlatformIOの拡張がインストールされている前提
-- エディタ下部の ✅️ でビルド
-- エディタ下部の ➡️ で書き込み
-- なお、書き込み時にはM5Stack本体のリセットボタンを2秒間長押しし、ダウンロードモードに移行しておく(LEDが光る)
+```bash
+$ brew install platformio
+
+# ビルド
+$ pio run
+
+# 書き込み
+# 上手くいかない場合にはM5Stack本体のリセットボタンを2秒間長押しし、ダウンロードモードに移行すると(LEDが光る)上手くいく場合がある
+$ pio run -t upload --upload-port /dev/cu.usbmodem1101
+```
 
 ## archivesディレクトリについて
 
-- `archives` 配下にある `main.cpp` を実行したい場合、そのコードを `src/main.cpp` に配置する
+- `archives` ディレクトリ配下には過去の様々な実験スクリプトが配置されている
+- 実行したい場合、そのコードを `src/main.cpp` に配置する
