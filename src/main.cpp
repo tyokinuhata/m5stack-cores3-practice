@@ -1,18 +1,19 @@
-#include <Arduino.h>
+#include <M5CoreS3.h>
 
-// put function declarations here:
-int myFunction(int, int);
+auto& Display = M5.Display;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  auto cfg = M5.config();
+  M5.begin(cfg);
+
+  Display.setRotation(1);
+  Display.fillScreen(0x222222);
+  Display.setTextColor(0xFFFFFF, 0x222222);
+  Display.setTextSize(4);
+  Display.setCursor(20, 20);
+  Display.print("hello, world!");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  M5.update();
 }
