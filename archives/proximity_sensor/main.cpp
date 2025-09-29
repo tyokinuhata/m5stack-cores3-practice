@@ -19,7 +19,7 @@ void setup() {
   if (!CoreS3.Ltr553.begin(&ltr_cfg)) {
     Display.setCursor(20, 20);
     Display.print("Ltr553 Init Fail");
-    while (1) delay(10);
+    while (true) delay(10);
   }
 
   CoreS3.Ltr553.setPsMode(LTR5XX_PS_ACTIVE_MODE);
