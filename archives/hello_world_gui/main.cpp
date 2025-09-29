@@ -6,8 +6,8 @@ void setup() {
   auto cfg = M5.config();
   M5.begin(cfg);
 
-  uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
+  const uint16_t bg = Display.color565(0x22, 0x22, 0x22);
+  const uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
 
   Display.setRotation(1);
   Display.fillScreen(bg);

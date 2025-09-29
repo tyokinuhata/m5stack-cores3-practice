@@ -7,8 +7,8 @@ void setup() {
   auto cfg = M5.config();
   M5.begin(cfg);
 
-  uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
+  const uint16_t bg = Display.color565(0x22, 0x22, 0x22);
+  const uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
   Display.fillScreen(bg);
   Display.setTextColor(fg, bg);
   Display.setTextSize(3);
@@ -29,8 +29,6 @@ void loop() {
 
   uint16_t als = CoreS3.Ltr553.getAlsValue();
 
-  uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
   Display.setCursor(20, 20);
   Display.printf("ALS: %-5u", als);
 
