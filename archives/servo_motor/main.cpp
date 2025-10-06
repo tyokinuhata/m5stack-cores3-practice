@@ -14,6 +14,7 @@ void setup() {
 
   Wire.begin(/*SDA=*/2, /*SCL=*/1, /*freq=*/100000);
 
+  // I2Cのアドレスを明示的に指定
   if (!servos.begin(&Wire, 0x25)) {
     Display.println("8SERVOS begin FAILED");
     while (true) delay(1000);
