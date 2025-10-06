@@ -1,17 +1,15 @@
 #include <M5CoreS3.h>
 #include "M5_UNIT_8SERVO.h"
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 M5_UNIT_8SERVO servos;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
-  const uint16_t bg = Display.color565(0x22,0x22,0x22);
-  const uint16_t fg = Display.color565(0xFF,0xFF,0xFF);
-  Display.fillScreen(bg);
-  Display.setTextColor(fg, bg);
+  Display.fillScreen(TFT_BLACK);
+  Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(2);
 
   Wire.begin(/*SDA=*/2, /*SCL=*/1, /*freq=*/100000);
@@ -36,6 +34,6 @@ void loop() {
   angle += step;
   if (angle >= 170 || angle <= 10) step = -step;
 
-  M5.update();
+  CoreS3.update();
   delay(15);
 }

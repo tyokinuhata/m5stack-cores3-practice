@@ -1,7 +1,7 @@
 #include <M5CoreS3.h>
 #include <Adafruit_TCS34725.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 
 Adafruit_TCS34725 tcs(
   TCS34725_INTEGRATIONTIME_50MS,
@@ -10,12 +10,10 @@ Adafruit_TCS34725 tcs(
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
-  const uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  const uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
-  Display.fillScreen(bg);
-  Display.setTextColor(fg, bg);
+  Display.fillScreen(TFT_BLACK);
+  Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(3);
 
   if (!tcs.begin(0x29, &Wire)) {
@@ -26,14 +24,10 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   uint16_t r, g, b, c;
   tcs.getRawData(&r, &g, &b, &c);
-
-  const uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  const uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
-  Display.setTextColor(fg, bg);
 
   uint8_t rn = 0, gn = 0, bn = 0;
   if (c > 0) {

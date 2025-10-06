@@ -1,11 +1,11 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 auto& Rtc = CoreS3.Rtc;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   if (!Rtc.begin()) {
     Display.setCursor(20, 20);

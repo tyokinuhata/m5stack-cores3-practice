@@ -1,7 +1,7 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
-auto& Imu = M5.Imu;
+auto& Display = CoreS3.Display;
+auto& Imu = CoreS3.Imu;
 
 struct GyroBias {
   float x;
@@ -31,7 +31,7 @@ GyroBias calibrate_gyro() {
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -45,7 +45,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   // バイアスの計算
   static GyroBias gyro_bias = calibrate_gyro();

@@ -1,7 +1,7 @@
 #include <M5CoreS3.h>
 #include <math.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 
 // 最小レベル(dBFS)
 constexpr float DBFS_MIN = -70.0f;
@@ -11,7 +11,7 @@ constexpr float DBFS_MAX = 0.0f;
 constexpr float EMA_ALPHA = 0.2f;
 
 size_t record_pcm_samples(int16_t* samples, size_t max_samples) {
-  return M5.Mic.record(samples, max_samples, 0);
+  return CoreS3.Mic.record(samples, max_samples, 0);
 }
 
 float calculate_rms(int16_t* samples, size_t n) {
@@ -48,13 +48,13 @@ float dbfs_to_norm(float dbfs) {
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(3);
 
-  if (!M5.Mic.begin()) {
+  if (!CoreS3.Mic.begin()) {
     Display.setCursor(20, 20);
     Display.print("Mic init failed");
     while (true) delay(100);
@@ -62,7 +62,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   // PCM(Pulse Code Modulation, パルス符号変調)の取得
   static int16_t samples[1024];

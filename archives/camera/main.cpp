@@ -1,11 +1,11 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 auto& Camera  = CoreS3.Camera;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -28,7 +28,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   if (!Camera.get()) {
     delay(10);

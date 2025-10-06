@@ -1,10 +1,10 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -12,17 +12,17 @@ void setup() {
   Display.setCursor(20, 20);
   Display.print("Speaker test");
 
-  if (!M5.Speaker.begin()) {
+  if (!CoreS3.Speaker.begin()) {
     Display.setCursor(20, 20);
     Display.print("Speaker init failed");
     while (true) delay(100);
   }
 
-  M5.Speaker.setVolume(120);
+  CoreS3.Speaker.setVolume(120);
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   // ドレミファソラシド（C4〜C5）
   int scale1[] = {262, 294, 330, 349, 392, 440, 494, 523};
@@ -31,13 +31,13 @@ void loop() {
 
   // ドレミファソラシド（C4〜C5）
   for (int f: scale1) {
-    M5.Speaker.tone(f, 500);
+    CoreS3.Speaker.tone(f, 500);
     delay(500);
   }
 
   // ドシラソファミレド（C4〜C5）
   for (int f: scale2) {
-    M5.Speaker.tone(f, 500);
+    CoreS3.Speaker.tone(f, 500);
     delay(500);
   }
 }

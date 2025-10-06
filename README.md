@@ -18,7 +18,7 @@ $ brew install platformio
 # ビルド
 $ pio run
 
-# 書き込み
+# ビルド + 書き込み
 # 上手くいかない場合にはM5Stack本体のリセットボタンを2秒間長押しし、ダウンロードモードに移行すると(LEDが光る)上手くいく場合がある
 $ pio run -t upload --upload-port /dev/cu.usbmodem1101
 ```

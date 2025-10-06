@@ -1,16 +1,14 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
+auto& Display = CoreS3.Display;
 Ltr5xx_Init_Basic_Para ltr_cfg = LTR5XX_BASE_PARA_CONFIG_DEFAULT;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
-  const uint16_t bg = Display.color565(0x22, 0x22, 0x22);
-  const uint16_t fg = Display.color565(0xFF, 0xFF, 0xFF);
-  Display.fillScreen(bg);
-  Display.setTextColor(fg, bg);
+  Display.fillScreen(TFT_BLACK);
+  Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(3);
 
   ltr_cfg.ps_led_pulse_freq   = LTR5XX_LED_PULSE_FREQ_40KHZ;
@@ -26,7 +24,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   uint16_t ps = CoreS3.Ltr553.getPsValue();
 

@@ -1,12 +1,12 @@
 #include <M5CoreS3.h>
 #include <math.h>
 
-auto& Display = M5.Display;
-auto& Imu = M5.Imu;
+auto& Display = CoreS3.Display;
+auto& Imu = CoreS3.Imu;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   float ax, ay, az;
   Imu.getAccel(&ax, &ay, &az);

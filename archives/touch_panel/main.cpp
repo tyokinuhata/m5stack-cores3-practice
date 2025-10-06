@@ -1,7 +1,7 @@
 #include <M5CoreS3.h>
 
-auto& Display = M5.Display;
-auto& Touch = M5.Touch;
+auto& Display = CoreS3.Display;
+auto& Touch = CoreS3.Touch;
 
 constexpr uint16_t PALETTE[] = {
   TFT_BLACK,
@@ -17,7 +17,7 @@ constexpr size_t PALETTE_LEN = sizeof(PALETTE) / sizeof(PALETTE[0]);
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(PALETTE[0]);
 }
@@ -26,7 +26,7 @@ void loop() {
   static size_t color_index = 0;
   static bool last_pressed = false;
 
-  M5.update();
+  CoreS3.update();
 
   auto t = Touch.getDetail();
   bool pressed = t.isPressed();
