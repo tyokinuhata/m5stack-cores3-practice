@@ -1,5 +1,5 @@
 #include <M5CoreS3.h>
-#include "M5_UNIT_8SERVO.h"
+#include <M5_UNIT_8SERVO.h>
 
 auto& Display = CoreS3.Display;
 M5_UNIT_8SERVO servos;
