@@ -12,7 +12,7 @@ void setup() {
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(2);
 
-  Wire.begin(/*SDA=*/2, /*SCL=*/1, /*freq=*/100000);
+  Wire.begin(/*SDA=*/2, /*SCL=*/1, /*freq=*/400000);
 
   // I2Cのアドレスを明示的に指定
   if (!servos.begin(&Wire, 0x25)) {
