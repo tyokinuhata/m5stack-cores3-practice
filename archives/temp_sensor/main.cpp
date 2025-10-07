@@ -7,7 +7,7 @@ SHT3X sht30;
 
 void setup() {
   auto cfg = M5.config();
-  M5.begin(cfg);
+  CoreS3.begin(cfg);
 
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
@@ -25,7 +25,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  CoreS3.update();
 
   if (!sht30.update()) {
     return;
@@ -34,7 +34,6 @@ void loop() {
   // 摂氏温度
   float temperature = sht30.cTemp;
 
-  Display.fillScreen(TFT_BLACK);
   Display.setCursor(20, 20);
   Display.printf("Temp: %.2f C", temperature);
 
