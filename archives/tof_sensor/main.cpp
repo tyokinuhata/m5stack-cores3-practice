@@ -33,11 +33,12 @@ void loop() {
 
   Display.setCursor(20, 20);
 
-  if (!tofSensor.timeoutOccurred()) {
-    Display.printf("Distance: %d mm", distance);
-  } else {
+  if (tofSensor.timeoutOccurred()) {
     Display.print("Timeout!");
+    return;
   }
+
+  Display.printf("Distance: %d mm", distance);
 
   delay(100);
 }
