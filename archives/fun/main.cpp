@@ -15,6 +15,7 @@ void setup() {
 void loop() {
   digitalWrite(PB_OUT, HIGH);
   delay(2000);
+
   digitalWrite(PB_OUT, LOW);
   delay(2000);
 }
