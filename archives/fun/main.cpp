@@ -7,7 +7,6 @@ constexpr int PB_OUT = 9;
 
 void setup() {
   auto cfg = M5.config();
-  cfg.output_power = true;
   CoreS3.begin(cfg);
 
   pinMode(PB_OUT, OUTPUT);
