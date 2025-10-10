@@ -16,6 +16,7 @@ void setup() {
   Display.setTextSize(2);
   Display.setCursor(20, 20);
 
+  // 通信プロトコルにはSPIを使用
   if (!SD.begin(4)) {
     Display.println("SD mount failed.");
     while (true) delay(100);
