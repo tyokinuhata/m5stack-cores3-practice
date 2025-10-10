@@ -23,6 +23,13 @@ $ pio run
 $ pio run -t upload --upload-port /dev/cu.usbmodem1101
 ```
 
+## 動作確認
+
+```bash
+# シリアルモニターを起動
+$ pio device monitor --port /dev/cu.usbmodem1101
+```
+
 ## archivesディレクトリについて
 
 - `archives` ディレクトリ配下には過去の様々な実験スクリプトが配置されている
