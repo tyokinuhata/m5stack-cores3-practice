@@ -10,12 +10,17 @@ bool connect_wifi() {
   const uint32_t timeout_ms = 20000;
   const int retries = 3;
 
+  // NVSに接続情報を保存しない
   WiFi.persistent(false);
+  // ステーションモード(≒子機モード)に設定
   WiFi.mode(WIFI_STA);
+  // 省電力モードを無効化
   WiFi.setSleep(false);
+  // 自動再接続を有効化
   WiFi.setAutoReconnect(true);
 
   for (int attempt = 1; attempt <= retries; attempt++) {
+    // NVSをクリーンにして切断
     WiFi.disconnect(true, true);
     delay(150);
 
@@ -61,6 +66,7 @@ void setup() {
   Display.println("WiFi Connected!\n");
   Display.printf("SSID: %s\n", SSID);
   Display.printf("IP  : %s\n", WiFi.localIP().toString().c_str());
+  // RSSI≒電波強度
   Display.printf("RSSI: %d dBm\n", WiFi.RSSI());
   Display.printf("MAC : %s\n", WiFi.macAddress().c_str());
 }
