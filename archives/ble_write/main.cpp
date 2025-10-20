@@ -57,7 +57,7 @@ void setup() {
   CoreS3.begin(cfg);
 
   CoreS3.Display.setTextColor(TFT_WHITE);
-  CoreS3.Display.setTextSize(2);
+  CoreS3.Display.setTextSize(4);
 
   setup_ble();
 }
@@ -66,7 +66,7 @@ void loop() {
   CoreS3.update();
 
   CoreS3.Display.fillScreen(TFT_BLACK);
-  CoreS3.Display.setCursor(10, 10);
+  CoreS3.Display.setCursor(20, 20);
   CoreS3.Display.println(text);
 
   delay(100);
