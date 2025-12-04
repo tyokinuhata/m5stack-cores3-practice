@@ -22,6 +22,8 @@ void setup() {
       while (true) delay(10);
   }
 
+  // キャリブレーション
+  // タレ(今の値を0gとみなす)
   scales.setOffset();
 }
 
