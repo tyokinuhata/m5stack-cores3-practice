@@ -1,34 +1,38 @@
 #include <M5CoreS3.h>
+#include <UNIT_SCALES.h>
 
-constexpr int FLASH_ENABLE_PIN = 8;
-constexpr int FLAST_CTRL_PIN = 9;
+UNIT_SCALES scales;
 
-constexpr int PWM_CHANNEL    = 0;
-constexpr int PWM_FREQ_HZ  = 5000;
-constexpr int PWM_RESOLUTION = 8;
+auto& Display = CoreS3.Display;
 
 void setup() {
   auto cfg = M5.config();
   CoreS3.begin(cfg);
 
-  // AW3641ドライバICを有効化するための信号ピンを出力に設定
-  pinMode(FLASH_ENABLE_PIN, OUTPUT);
-  // LEDの明るさ・点灯を制御する信号ピンを出力に設定
-  pinMode(FLAST_CTRL_PIN, OUTPUT);
+  Display.fillScreen(TFT_BLACK);
+  Display.setTextColor(TFT_WHITE, TFT_BLACK);
+  Display.setTextSize(3);
 
-  // AW3641ドライバICの電源を有効化
-  digitalWrite(FLASH_ENABLE_PIN, HIGH);
+  const int SDA_PIN = 2;
+  const int SCL_PIN = 1;
 
-  // どのチャンネルを何Hz、何段階の明るさで動かすかを指定
-  ledcSetup(PWM_CHANNEL, PWM_FREQ_HZ, PWM_RESOLUTION);
-  // チャンネルの出力先として FLASH_CTRL_PIN を割り当てる
-  ledcAttachPin(FLAST_CTRL_PIN, PWM_CHANNEL);
+  if (!scales.begin(&Wire, SDA_PIN, SCL_PIN, DEVICE_DEFAULT_ADDR)) {
+      Display.setCursor(20, 20);
+      Display.print("Mini Scales Init Fail");
+      while (true) delay(10);
+  }
+
+  scales.setOffset();
 }
 
 void loop() {
-  ledcWrite(PWM_CHANNEL, 255);
-  delay(500);
+  CoreS3.update();
 
-  ledcWrite(PWM_CHANNEL, 0);
-  delay(500);
+  float weight = scales.getWeight();
+
+  Display.fillScreen(TFT_BLACK);
+  Display.setCursor(20, 20);
+  Display.printf("Weight: %.2f g\n", weight);
+
+  delay(200);
 }

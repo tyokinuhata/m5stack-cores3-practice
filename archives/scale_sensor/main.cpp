@@ -1,5 +1,5 @@
 #include <M5CoreS3.h>
-#include "UNIT_SCALES.h"
+#include <UNIT_SCALES.h>
 
 UNIT_SCALES scales;
 
@@ -12,7 +12,6 @@ void setup() {
   Display.fillScreen(TFT_BLACK);
   Display.setTextColor(TFT_WHITE, TFT_BLACK);
   Display.setTextSize(3);
-  Display.setCursor(0, 0);
 
   const int SDA_PIN = 2;
   const int SCL_PIN = 1;
